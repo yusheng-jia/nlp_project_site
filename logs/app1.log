@@ -1,7 +1,0 @@
-2019-03-12 10:39:26: [0mGET / [36m304 [0m6.215 ms - -[0m
-2019-03-12 10:39:36: [0mGET /stylesheets/style.css [36m304 [0m2.791 ms - -[0m
-2019-03-12 10:39:36: [0mGET /javascripts/main.js [36m304 [0m3.915 ms - -[0m
-2019-03-12 10:39:36: [0mGET /images/logo.png [36m304 [0m4.147 ms - -[0m
-2019-03-12 10:39:36: [0mGET /scripts/angular/angular.min.js [36m304 [0m8.242 ms - -[0m
-2019-03-12 10:39:36: [0mGET /scripts/ng-file-upload/dist/ng-file-upload-shim.min.js [36m304 [0m8.256 ms - -[0m
-2019-03-12 10:39:36: [0mGET /scripts/ng-file-upload/dist/ng-file-upload.min.js [36m304 [0m8.116 ms - -[0m

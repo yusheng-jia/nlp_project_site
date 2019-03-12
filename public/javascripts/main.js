@@ -3,7 +3,7 @@ var api_m = "http://40.125.167.197/sms_n_account"
 var app = angular.module("app",['ngFileUpload'])
 
 app.controller("main",function($scope, $interval, $http, Upload){
-  $scope.status = "chat"
+  $scope.status = "start"
   $scope.status_text = "其它"
   $scope.names = ["M","N"]
   $scope.progress = 0
@@ -35,7 +35,7 @@ app.controller("main",function($scope, $interval, $http, Upload){
         $scope.status_text = "已通过"
       }else {
         $scope.status = "chat"
-        $scope.status_text = "其它"
+        $scope.status_text = "聊天"
       }
     },error=>{
       console.log(error)
@@ -44,10 +44,14 @@ app.controller("main",function($scope, $interval, $http, Upload){
   }
 
   $scope.submit = function() {
-    if ($scope.form2.file.$valid && $scope.file) {
-      $scope.upload($scope.file);
+    if($scope.showProcess){
+      alert("已在进行中")
     }else{
-      alert("文件格式不对")
+      if ($scope.form2.file.$valid && $scope.file) {
+        $scope.upload($scope.file);
+      }else{
+        alert("文件格式不对")
+      }
     }
   };
 

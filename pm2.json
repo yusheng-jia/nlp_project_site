@@ -8,7 +8,7 @@
   
      "log_date_format": "YYYY-MM-DD HH:mm:SS",
   
-     "log_file": "logs/app1.log",
+     "log_file": "logs/app.log",
   
      "error_file": "logs/app-err.log",
   
