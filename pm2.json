@@ -1,0 +1,43 @@
+{
+  "apps": [
+    {
+  
+     "name": "sms_project_site",
+  
+     "script": "bin/www",
+  
+     "log_date_format": "YYYY-MM-DD HH:mm:SS",
+  
+     "log_file": "logs/app1.log",
+  
+     "error_file": "logs/app-err.log",
+  
+     "out_file": "logs/app-out.log",
+  
+     "pid_file": "pids/app.pid",
+  
+     "instances": 1,
+  
+     "min_uptime": "200s",
+  
+     "max_restarts": 10,
+  
+     "max_memory_restart": "1M",
+  
+     "cron_restart": "1 0 * * *",
+  
+     "watch": false,
+  
+     "merge_logs": true,
+  
+     "exec_interpreter": "node",
+  
+     "exec_mode": "fork",
+  
+     "autorestart": true,
+  
+     "vizion": false
+  
+    }
+   ]
+}

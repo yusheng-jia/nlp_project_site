@@ -1,0 +1,127 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    font-family: inherit;
+    vertical-align: baseline;
+    text-decoration: none;
+}
+
+:focus {
+    outline: 0;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+caption, th, td {
+    height: 30px;
+    font-weight: normal;
+}
+
+a img, iframe {
+    border: none;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+input, textarea, select, button {
+    font-size: 100%;
+    font-family: inherit;
+}
+
+select {
+    margin: inherit;
+}
+
+body {
+    font-size: 14px;
+    font-family: "Î¢ÈíÑÅºÚ";
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+div,dl,dt,dd,form,h1,h2,h3,h4,h5,h6,img,ol,ul,li,table,th,td,p,span,a {
+    border: 0;
+}
+
+
+body {
+    font-family: Tahoma,Arial,Helvetica,"Î¢ÈíÑÅºÚ";
+    font-size: 14px;
+    background: #FFF;
+    color: #212121;
+    line-height: 30px;
+    background: #efefef;
+}
+
+html {
+    overflow-y: scroll;
+}
+
+ul,ol {
+    list-style-type: none;
+}
+
+th,td,input {
+    font-size: 14px;
+}
+
+h3 {
+    font-size: 14px;
+}
+
+button {
+    border: none;
+    outline:none;
+    cursor: pointer;
+    font-size: 14px;
+    background-color: transparent;
+}
+
+select {
+    border-width: 1px;
+    _zoom: 1;
+    border-style: solid;
+    padding-top: 2px;
+    font-size: 14px;
+}
+
+.clear {
+    clear: both;
+    font-size: 1px;
+    height: 0;
+    visibility: hidden;
+    line-height: 0;
+}
+
+.clearfix:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+a:link,a:visited {
+    text-decoration: none;
+    color: #333;
+}
+
+a:hover,a:active {
+    text-decoration: underline;
+    color: #f60;
+}

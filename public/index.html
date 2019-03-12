@@ -1,0 +1,191 @@
+<!DOCTYPE html >
+<html ng-app="app">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>基于酷曼AI，判断文本合法性的DEMO</title>
+  <style type="text/css">
+    @import url("stylesheets/style.css");
+
+    .table1 {
+      padding: 20px;
+    }
+
+    .input2 {
+      width: 500px;
+    }
+
+    .input3 {
+      width: 444px;
+    }
+
+    .select1 {
+      width: 100px;
+    }
+
+    .btn {
+      padding: 30;
+      margin: 30;
+    }
+
+    .title1 {
+      font-size: 18px;
+      line-height: 50px;
+      font-weight: 800;
+    }
+
+    .yes {
+      color: #008000;
+      background-color: #caf4ca;
+      text-indent: 10px;
+      width: 502px;
+    }
+
+    .no {
+      color: #990000;
+      background-color: #ffcaca;
+      text-indent: 10px;
+      width: 502px;
+    }
+
+    .chat {
+      color: #c0bcbc;
+      background-color: #dfdbdb;
+      text-indent: 10px;
+      width: 502px;
+    }
+
+    .nav {
+      height: 35px;
+      width: auto;
+      padding: 20px;
+      font-size: 22px;
+      color: #FFFFFF;
+      background-color: #0099FF;
+
+    }
+
+    .copyright {
+      font-size: 10px;
+      background-color: #efefef;
+      background-position: center;
+      color: #999999;
+      padding-top: 12px
+    }
+
+    .progress {
+      width: 400px;
+      border: 1px solid #ccc;
+      height: 28px;
+      text-align: center;
+      line-height: 28px;
+      font-weight: bold;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .Bar {
+      width: 50%;
+      height: 28px;
+      background: #5BC0DE;
+    }
+
+    .blue {
+      background: #5BC0DE;
+    }
+  </style>
+</head>
+<script src="scripts/angular/angular.min.js"></script>
+<script src="scripts/ng-file-upload/dist/ng-file-upload-shim.min.js"></script>
+<script src="scripts/ng-file-upload/dist/ng-file-upload.min.js"></script>
+<script src="./javascripts/main.js"></script>
+
+<body ng-controller="main">
+  <div style="background-color:#FFFFFF">
+    <div class="nav">
+      <div style="float:left"><img src="images/logo.png" width="32" height="32" /></div>
+      基于酷曼AI，判断文本合法性的DEMO
+    </div>
+    <form id="form1" name="form1" ng-submit="singleJudge()">
+      <table width="1000" border="0" cellspacing="0" class="table1">
+        <tr>
+          <td colspan="2" class="title1">单条判断</td>
+        </tr>
+        <tr>
+          <td width="80">账号类型</td>
+          <td>
+            <label>
+              <select ng-init="selectedName = names[0]" ng-model="selectedName" ng-options="x for x in names" name="select"
+                class="select1">
+              </select>
+            </label> </td>
+        </tr>
+        <tr>
+          <td>短信内容</td>
+          <td><textarea ng-model="message" name="textarea" rows="5" class="input2"></textarea></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td><input name="Submit" type="submit" class="btn" value="提交判断" /></td>
+        </tr>
+        <tr>
+          <td>判断结果</td>
+          <td>
+            <div style ng-class="status" ng-bind="status_text"></div>
+          </td>
+        </tr>
+      </table>
+    </form>
+
+
+    <form id="form2" name="form2" ng-submit="submit()">
+      <table width="1000" border="0" cellspacing="0" class="table1">
+        <tr>
+          <td colspan="2" class="title1">批量判断</td>
+        </tr>
+        <tr>
+          <td width="80">目录</td>
+          <td>
+            <label></label>
+            <input type="file" name="file" ngf-select ng-model="file" ngf-pattern="'.xls,.xlsx'" ngf-max-size="2MB"
+              required>
+          </td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>
+            <font color="#999999">选择你要判断的文件夹所在目录。文件大小控制在20M以内，格式为xls,xlsx</font>
+          </td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td><input name="Submit" type="submit" class="btn" value="提交判断" /></td>
+        </tr>
+        <tr>
+          <td>判断结果</td>
+          <td ng-if="!showProcess">
+            <div style class="yes">点击下载（<a href="/down_file" >sms.xlsx</a>）
+            </div>
+          </td>
+          <td ng-if="showProcess">
+            <div class="progress">
+              <div ng-class="['Bar','blue']" ng-style="{width:progress+'%'}">
+                <div>{{progress}}%</div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </form>
+    <br />
+    <br />
+    <div>
+      <div class="copyright" align="center">技术支持:酷曼科技</div>
+    </div>
+  </div>
+</body>
+
+</html>
