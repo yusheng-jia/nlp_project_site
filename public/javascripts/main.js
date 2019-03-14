@@ -9,6 +9,7 @@ app.controller("main",function($scope, $interval, $http, Upload){
   $scope.progress = 0
   $scope.showProcess = false
   $scope.processTimer = null
+  $scope.rejectType = ""
 
   $scope.singleJudge = function(){
     console.log($scope.selectedName)
@@ -26,7 +27,7 @@ app.controller("main",function($scope, $interval, $http, Upload){
         "userId":"dev001"
       }
     }).then(res=>{
-      console.log(res.data.name)
+      console.log(res.data)
       if(res.data.name == "reject"){
         $scope.status = "no"
         $scope.status_text = "未通过"
@@ -37,6 +38,7 @@ app.controller("main",function($scope, $interval, $http, Upload){
         $scope.status = "chat"
         $scope.status_text = "聊天"
       }
+      $scope.rejectType = res.data.type
     },error=>{
       console.log(error)
       alert("出错了")
@@ -61,6 +63,7 @@ app.controller("main",function($scope, $interval, $http, Upload){
         url: '/file-upload',
         data: {file: file, 'type':$scope.selectedName}
     }).then(function (resp) {
+      $scope.progress = 0
       $scope.showProcess = true
       console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
       $scope.processTimer = $interval(checkStatus,1000)

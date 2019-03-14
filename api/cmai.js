@@ -26,6 +26,8 @@ var options = m_options
 
 var path = "uploads"
 
+var fileTpye = "xls"
+
 var array = []
 var curIndex = 0
 
@@ -35,16 +37,33 @@ function handleFile(){
     files.forEach(function (file) {
       var curPath = path + "/" + file
       console.log(curPath)
-      var obj = xlsx.parse(curPath);
-      array = obj[0].data
+      if(fileTpye == 'text/csv'){
+        array = handleCsvFile(curPath)
+      }else{
+        var obj = xlsx.parse(curPath);
+        array = obj[0].data
+      }
       console.log(array);
       postMain(0)
      })
   })  
 }
 
+function handleCsvFile(file){
+  console.log("csvFile: " + file)
+  var tempArray = []
+  var data = fs.readFileSync(file)
+  var row = data.toString().split("\n")
+  for(var i=0; i<row.length; i++){
+    tempArray.push(row[i].split(","))
+  }
+  return tempArray
+}
+
+
 function postMain(index){
-  curIndex = index
+  // 生成文件后进度才能到100 所以这里当前进度减1
+  curIndex = index - 1
   if(index >= array.length){
     exportExcelFile()
     return;
@@ -76,17 +95,25 @@ function postMain(index){
 }
 
 function downFile(req, res, next){
-  res.download("./sms_ok.xlsx");
+  res.download("./sms_result.xlsx");
 }
 
 function exportExcelFile(){
   var data = array;
-  var buffer = xlsx.build([{name: "mySheetName", data: data}]);
-  fs.writeFileSync('sms_ok.xlsx', buffer, 'binary');
+  var buffer = xlsx.build([{name: "smsSheet", data: data}]);
+  fs.writeFile('sms_result.xlsx', buffer, 'binary',function(err){
+    if(err){
+      console.log("生成excel文件出错:" + err)
+      return false
+    }
+    curIndex = curIndex + 1
+  })
+  // fs.writeFileSync('sms_result.xlsx', buffer, 'binary');
 }
 
 function uploadFile(req, res){
   console.log(req.files);
+  fileTpye = req.files.file.type
   if(req.body.type == "M"){
     options = m_options
   }else{

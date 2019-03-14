@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>基于酷曼AI，判断文本合法性的DEMO</title>
+  <title>创蓝科技短信服务智能质检系统DEMO</title>
   <style type="text/css">
     @import url("stylesheets/style.css");
 
@@ -113,7 +113,7 @@
   <div style="background-color:#FFFFFF">
     <div class="nav">
       <div style="float:left"><img src="images/logo.png" width="32" height="32" /></div>
-      基于酷曼AI，判断文本合法性的DEMO
+      创蓝科技短信服务智能质检系统DEMO
     </div>
     <form id="form1" name="form1" ng-submit="singleJudge()">
       <table width="1000" border="0" cellspacing="0" class="table1">
@@ -143,6 +143,12 @@
             <div style ng-class="status" ng-bind="status_text"></div>
           </td>
         </tr>
+        <tr>
+          <td>拒绝类型</td>
+          <td>
+            <div  ng-bind="rejectType"></div>
+          </td>
+        </tr>
       </table>
     </form>
 
@@ -156,14 +162,14 @@
           <td width="80">目录</td>
           <td>
             <label></label>
-            <input type="file" name="file" ngf-select ng-model="file" ngf-pattern="'.xls,.xlsx'" ngf-max-size="2MB"
+            <input type="file" name="file" ngf-select ng-model="file" ngf-pattern="'.xls,.xlsx,.csv'" ngf-max-size="5MB"
               required>
           </td>
         </tr>
         <tr>
           <td>&nbsp;</td>
           <td>
-            <font color="#999999">选择你要判断的文件夹所在目录。文件大小控制在20M以内，格式为xls,xlsx</font>
+            <font color="#999999">选择你要判断的文件夹所在目录。文件大小控制在5M以内，格式为xls,xlsx,csv</font>
           </td>
         </tr>
         <tr>
@@ -173,7 +179,7 @@
         <tr>
           <td>判断结果</td>
           <td ng-if="!showProcess">
-            <div style class="yes">点击下载（<a href="/down_file" >sms.xlsx</a>）
+            <div style class="yes">点击下载（<a href="/down_file" >sms_result.xlsx</a>）
             </div>
           </td>
           <td ng-if="showProcess">
