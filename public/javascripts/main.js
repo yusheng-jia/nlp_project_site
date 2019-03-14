@@ -1,5 +1,5 @@
 var api_n = "http://40.125.167.197/sms_n_account"
-var api_m = "http://40.125.167.197/sms_n_account"
+var api_m = "http://40.125.167.197/sms_m_account"
 var app = angular.module("app",['ngFileUpload'])
 
 app.controller("main",function($scope, $interval, $http, Upload){
