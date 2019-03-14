@@ -113,6 +113,7 @@ function exportExcelFile(){
 
 function uploadFile(req, res){
   console.log(req.files);
+  array = []
   fileTpye = req.files.file.type
   if(req.body.type == "M"){
     options = m_options
