@@ -43,7 +43,6 @@ function handleFile(){
         var obj = xlsx.parse(curPath);
         array = obj[0].data
       }
-      console.log(array);
       postMain(0)
      })
   })  
@@ -69,7 +68,7 @@ function postMain(index){
     return;
   }
   var currentText = array[index][1]
-  console.log("text : " + currentText)
+  console.log("index: " + index +" text: " + currentText)
   var content = JSON.stringify({"query":currentText,"userId":"dev001"})
   var req = http.request(options,function(res){
     // console.log('STATUS: ' + res.statusCode);  
@@ -78,7 +77,10 @@ function postMain(index){
     res.on('data', function (body) { 
       var obj = eval("("+body+")"); 
       console.log('BODY: ' + obj.name); 
-      array[index].push(obj.name) 
+      array[index].push(obj.name)
+      if(obj.type != ""){
+        array[index].push(obj.type)
+      } 
     })
     res.on('end',function(){
       postMain(index + 1)
