@@ -18,6 +18,10 @@ app.controller("main",function($scope, $interval, $http, Upload){
     }else{
       api_url = api_n
     }
+    if($scope.message == ""){
+      alert("输入内容不能为空")
+      return;
+    }
     console.log("url: " + api_url)
     $http({
       url:api_url,
