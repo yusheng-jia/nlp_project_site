@@ -13,3 +13,15 @@ nodeJs web 项目
 5. 如果你想在服务器端部署 使用pm2 来部署: pm2 start ./bin/www
 
 PS: pm2 自行了解
+
+PS: ubuntu 环境搭建
+1.安装NodeJs和升级到最新
+sudo apt-get install nodejs
+sudo apt install nodejs-legacy
+sudo apt install npm
+
+sudo npm cache clean
+sudo npm install -g n 
+sudo n stable
+2. 安装pm2
+npm install -g pm2 

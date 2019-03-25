@@ -5,7 +5,7 @@ var fs = require('fs');
 var http = require("http")
 
 var n_options = {  
-  hostname: '40.125.167.197',  
+  hostname: '47.103.44.86',  
   path: '/sms_n_account',  
   method: 'POST',  
   headers: {  
@@ -14,7 +14,7 @@ var n_options = {
 };
 
 var m_options = {  
-  hostname: '40.125.167.197',  
+  hostname: '47.103.44.86',  
   path: '/sms_m_account',  
   method: 'POST',  
   headers: {  
