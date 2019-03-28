@@ -40,7 +40,7 @@ app.controller("main",function($scope, $interval, $http, Upload){
         $scope.status_text = "已通过"
       }else {
         $scope.status = "chat"
-        $scope.status_text = "聊天"
+        $scope.status_text = "不确定"
       }
       $scope.rejectType = res.data.type
     },error=>{
