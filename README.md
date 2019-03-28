@@ -20,6 +20,7 @@ sudo apt-get install nodejs
 sudo apt install nodejs-legacy
 sudo apt install npm
 
+#升级
 sudo npm cache clean
 sudo npm install -g n 
 sudo n stable
