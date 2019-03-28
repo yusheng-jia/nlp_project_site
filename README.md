@@ -15,14 +15,15 @@ nodeJs web 项目
 PS: pm2 自行了解
 
 PS: ubuntu 环境搭建
-1.安装NodeJs和升级到最新
-sudo apt-get install nodejs
-sudo apt install nodejs-legacy
-sudo apt install npm
+
+1. 安装NodeJs和升级到最新
+  sudo apt-get install nodejs
+  sudo apt install nodejs-legacy
+  sudo apt install npm
 
 #升级
-sudo npm cache clean
-sudo npm install -g n 
-sudo n stable
+  sudo npm cache clean
+  sudo npm install -g n 
+  sudo n stable
 2. 安装pm2
 npm install -g pm2 
