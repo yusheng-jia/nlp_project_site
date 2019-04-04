@@ -1,0 +1,97 @@
+.table1 {
+  padding: 20px;
+}
+.table2 {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px
+}
+
+.input2 {
+  width: 500px;
+}
+
+.input3 {
+  width: 444px;
+}
+
+.select1 {
+  width: 100px;
+}
+
+.btn {
+  padding: 30;
+  margin: 30;
+}
+
+.title1 {
+  font-size: 18px;
+  line-height: 50px;
+  font-weight: 800;
+}
+
+.yes {
+  color: #008000;
+  background-color: #caf4ca;
+  text-indent: 10px;
+  width: 502px;
+}
+
+.no {
+  color: #990000;
+  background-color: #ffcaca;
+  text-indent: 10px;
+  width: 502px;
+}
+
+.chat {
+  color: #111010;
+  background-color: #8a8585;
+  text-indent: 10px;
+  width: 502px;
+}
+.start {
+  color: #c0bcbc;
+  background-color: #dfdbdb;
+  text-indent: 10px;
+  width: 502px;
+}
+
+.nav {
+  height: 35px;
+  width: auto;
+  padding: 20px;
+  font-size: 22px;
+  color: #FFFFFF;
+  background-color: #0099FF;
+
+}
+
+.copyright {
+  font-size: 10px;
+  background-color: #efefef;
+  background-position: center;
+  color: #999999;
+  padding-top: 12px
+}
+
+.progress {
+  width: 400px;
+  border: 1px solid #ccc;
+  height: 28px;
+  text-align: center;
+  line-height: 28px;
+  font-weight: bold;
+  color: #fff;
+  overflow: hidden;
+}
+
+.Bar {
+  width: 50%;
+  height: 28px;
+  background: #5BC0DE;
+}
+
+.blue {
+  background: #5BC0DE;
+}

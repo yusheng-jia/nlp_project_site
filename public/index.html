@@ -7,102 +7,8 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <title>创蓝科技短信服务智能质检系统DEMO</title>
-  <style type="text/css">
-    @import url("stylesheets/style.css");
-
-    .table1 {
-      padding: 20px;
-    }
-
-    .input2 {
-      width: 500px;
-    }
-
-    .input3 {
-      width: 444px;
-    }
-
-    .select1 {
-      width: 100px;
-    }
-
-    .btn {
-      padding: 30;
-      margin: 30;
-    }
-
-    .title1 {
-      font-size: 18px;
-      line-height: 50px;
-      font-weight: 800;
-    }
-
-    .yes {
-      color: #008000;
-      background-color: #caf4ca;
-      text-indent: 10px;
-      width: 502px;
-    }
-
-    .no {
-      color: #990000;
-      background-color: #ffcaca;
-      text-indent: 10px;
-      width: 502px;
-    }
-
-    .chat {
-      color: #111010;
-      background-color: #8a8585;
-      text-indent: 10px;
-      width: 502px;
-    }
-    .start {
-      color: #c0bcbc;
-      background-color: #dfdbdb;
-      text-indent: 10px;
-      width: 502px;
-    }
-
-    .nav {
-      height: 35px;
-      width: auto;
-      padding: 20px;
-      font-size: 22px;
-      color: #FFFFFF;
-      background-color: #0099FF;
-
-    }
-
-    .copyright {
-      font-size: 10px;
-      background-color: #efefef;
-      background-position: center;
-      color: #999999;
-      padding-top: 12px
-    }
-
-    .progress {
-      width: 400px;
-      border: 1px solid #ccc;
-      height: 28px;
-      text-align: center;
-      line-height: 28px;
-      font-weight: bold;
-      color: #fff;
-      overflow: hidden;
-    }
-
-    .Bar {
-      width: 50%;
-      height: 28px;
-      background: #5BC0DE;
-    }
-
-    .blue {
-      background: #5BC0DE;
-    }
-  </style>
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <link rel="stylesheet" href="stylesheets/main.css">
 </head>
 <script src="scripts/angular/angular.min.js"></script>
 <script src="scripts/ng-file-upload/dist/ng-file-upload-shim.min.js"></script>
@@ -149,12 +55,24 @@
             <div  ng-bind="rejectType"></div>
           </td>
         </tr>
+        <tr>
+          <td>相似语料</td>
+          <td ng-bind="maxs1" style="line-height: 1em;"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td ng-bind="maxs2" style="line-height: 1em;"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td ng-bind="maxs3" style="line-height: 1em;"></td>
+        </tr>
       </table>
     </form>
 
 
     <form id="form2" name="form2" ng-submit="submit()">
-      <table width="1000" border="0" cellspacing="0" class="table1">
+      <table width="1000" border="0" cellspacing="0" class="table2">
         <tr>
           <td colspan="2" class="title1">批量判断</td>
         </tr>

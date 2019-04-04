@@ -10,6 +10,9 @@ app.controller("main",function($scope, $interval, $http, Upload){
   $scope.showProcess = false
   $scope.processTimer = null
   $scope.rejectType = ""
+  $scope.maxs1 = ""
+  $scope.maxs2 = ""
+  $scope.maxs3 = ""
 
   $scope.singleJudge = function(){
     console.log($scope.selectedName)
@@ -43,6 +46,16 @@ app.controller("main",function($scope, $interval, $http, Upload){
         $scope.status_text = "不确定"
       }
       $scope.rejectType = res.data.type
+      var max3 = res.data.max3
+      if(max3[0].split(":")[0] > 0.9){
+        $scope.maxs1 = max3[0]
+      }
+      if(max3[1].split(":")[0] > 0.9){
+        $scope.maxs2 = max3[1]
+      }
+      if(max3[2].split(":")[0] > 0.9){
+        $scope.maxs3 = max3[2]
+      }
     },error=>{
       console.log(error)
       alert("出错了")
