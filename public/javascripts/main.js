@@ -49,12 +49,18 @@ app.controller("main",function($scope, $interval, $http, Upload){
       var max3 = res.data.max3
       if(max3[0].split(":")[0] > 0.9){
         $scope.maxs1 = max3[0]
+      }else{
+        $scope.maxs1 = ""
       }
       if(max3[1].split(":")[0] > 0.9){
         $scope.maxs2 = max3[1]
+      }else{
+        $scope.maxs2 = ""
       }
       if(max3[2].split(":")[0] > 0.9){
         $scope.maxs3 = max3[2]
+      }else{
+        $scope.maxs3 = ""
       }
     },error=>{
       console.log(error)
