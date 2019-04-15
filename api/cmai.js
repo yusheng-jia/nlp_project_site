@@ -75,12 +75,17 @@ function postMain(index){
     // console.log('HEADERS: ' + JSON.stringify(res.headers));  
     res.setEncoding('utf8');  
     res.on('data', function (body) { 
-      var obj = eval("("+body+")"); 
-      console.log('BODY: ' + obj.name); 
-      array[index].push(obj.name)
-      if(obj.type != ""){
-        array[index].push(obj.type)
-      } 
+      try {
+        var obj = eval("("+body+")"); 
+        console.log('BODY: ' + obj.name); 
+        array[index].push(obj.name)
+        if(obj.type != ""){
+          array[index].push(obj.type)
+        }
+      } catch (error) {
+        
+      }
+       
     })
     res.on('end',function(){
       postMain(index + 1)
