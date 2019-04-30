@@ -21,8 +21,9 @@
       <div style="float:left"><img src="images/logo.png" width="80" height="25" /></div>
       &nbsp&nbsp创蓝科技短信服务智能质检系统DEMO
     </div>
+
     <form id="form1" name="form1" ng-submit="singleJudge()">
-      <table width="1000" border="0" cellspacing="0" class="table1">
+      <table width="50%" style="float:left" border="0" cellspacing="0" class="table1">
         <tr>
           <td colspan="2" class="title1">单条判断</td>
         </tr>
@@ -30,7 +31,7 @@
           <td width="80">账号类型</td>
           <td>
             <label>
-              <select ng-init="selectedName = names[0]" ng-model="selectedName" ng-options="x for x in names" name="select"
+              <select ng-init="coomaanTpye = types[0]" ng-model="coomaanTpye" ng-options="x for x in types" name="select"
                 class="select1">
               </select>
             </label> </td>
@@ -69,12 +70,51 @@
         </tr>
       </table>
     </form>
+    <form id="from3" name="from3" ng-submit="guardJudge()">
+      <table width="50%" style="float:right" border="0" cellspacing="0" class="table1">
+        <tr>
+          <td colspan="2" class="title1">短信卫士</td>
+        </tr>
+        <tr>
+          <td width="80">短信类型</td>
+          <td>
+            <label>
+              <select ng-init="guardTpye = guardTpyes[0]" ng-model="guardTpye" ng-options="x for x in guardTpyes" name="select"
+                class="select1">
+              </select>
+            </label> </td>
+        </tr>
+        <tr>
+          <td>短信内容</td>
+          <td><textarea ng-model="guardMessage" name="textarea" rows="5" class="input2"></textarea></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td><input name="Submit" type="submit" class="btn" value="提交判断" /></td>
+        </tr>
+        <tr>
+          <td>判断结果</td>
+          <td>
+            <div style ng-class="guard_status" ng-bind="guard_status_text"></div>
+          </td>
+        </tr>
+      </table>
+    </form>
 
 
     <form id="form2" name="form2" ng-submit="submit()">
       <table width="1000" border="0" cellspacing="0" class="table2">
         <tr>
           <td colspan="2" class="title1">批量判断</td>
+        </tr>
+        <tr>
+          <td width="80">账号类型</td>
+          <td>
+            <label>
+              <select ng-init="multiTpye = types[0]" ng-model="multiTpye" ng-options="x for x in types" name="select"
+                class="select1">
+              </select>
+            </label> </td>
         </tr>
         <tr>
           <td width="80">目录</td>

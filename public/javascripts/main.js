@@ -1,11 +1,14 @@
-var api_n = "http://47.103.44.86/sms_n_account"
-var api_m = "http://47.103.44.86/sms_m_account"
+const api_n = "http://47.103.44.86/sms_n_account"
+const api_m = "http://47.103.44.86/sms_m_account"
+const guard_api = "http://tt.api.coomaan.com/coomaan/sms_check"
 var app = angular.module("app",['ngFileUpload'])
 
 app.controller("main",function($scope, $interval, $http, Upload){
   $scope.status = "start"
+  $scope.guard_status = "start"
   $scope.status_text = "其它"
-  $scope.names = ["M","N"]
+  $scope.types = ["M","N"]
+  $scope.guardTpyes = ["行业短信","营销短信"]
   $scope.progress = 0
   $scope.showProcess = false
   $scope.processTimer = null
@@ -14,9 +17,9 @@ app.controller("main",function($scope, $interval, $http, Upload){
   $scope.maxs2 = ""
   $scope.maxs3 = ""
 
-  $scope.singleJudge = function(){
-    console.log($scope.selectedName)
-    if($scope.selectedName == "M"){
+  $scope.singleJudge = () => {
+    console.log($scope.coomaanTpye)
+    if($scope.coomaanTpye == "M"){
       api_url = api_m
     }else{
       api_url = api_n
@@ -33,7 +36,7 @@ app.controller("main",function($scope, $interval, $http, Upload){
         "query":$scope.message,
         "userId":"dev001"
       }
-    }).then(res=>{
+    }).then(res => {
       console.log(res.data)
       if(res.data.name == "reject"){
         $scope.status = "no"
@@ -62,13 +65,47 @@ app.controller("main",function($scope, $interval, $http, Upload){
       }else{
         $scope.maxs3 = ""
       }
-    },error=>{
+    },error => {
       console.log(error)
       alert("出错了")
     })
   }
 
-  $scope.submit = function() {
+  $scope.guardJudge = () =>{
+    console.log("guardJudge" + $scope.guardTpye)
+    console.log("guardMessage: " + $scope.guardMessage)
+    var port_type = $scope.guardTpye == $scope.guardTpyes[0]?1:2
+    console.log("port_type: " + port_type)
+    $http({
+      url:guard_api,
+      method:'POST',
+      data:{
+        "port_type":port_type,
+        "content":$scope.guardMessage,
+        "sender":"3333",
+        "receiver": "3333"
+      }
+    }).then( res =>{
+      console.log("成功了")
+      var status =  res.data.data.status
+      if(status == 300){
+        $scope.guard_status = "no"
+        $scope.guard_status_text = "内容或号码异常，不能发送"
+      }else if(status == 1){
+        $scope.guard_status = "yes"
+        $scope.guard_status_text = "信息都正常，可发送"
+      }else if(status == -1){
+        $scope.guard_status = "chat"
+        $scope.guard_status_text = "未知，未探测到"
+      }
+    }, error=>{
+      console.log("报错了")
+      console.log(error)
+    })
+
+  }
+  
+  $scope.submit = () => {
     if($scope.showProcess){
       alert("已在进行中")
     }else{
@@ -80,11 +117,11 @@ app.controller("main",function($scope, $interval, $http, Upload){
     }
   };
 
-  $scope.upload = function (file) {
+  $scope.upload = file => {
     console.log("file : " + file)
     Upload.upload({
         url: '/file-upload',
-        data: {file: file, 'type':$scope.selectedName}
+        data: {file: file, 'type':$scope.multiTpye}
     }).then(function (resp) {
       $scope.progress = 0
       $scope.showProcess = true
@@ -102,7 +139,7 @@ app.controller("main",function($scope, $interval, $http, Upload){
     $interval.cancel($scope.processTimer);
   });
 
-  function checkStatus(){
+  var checkStatus = () =>{ 
     $http.get('/file_status').then(res=>{
       $scope.progress = parseInt(res.data.status*100)
       if ($scope.progress == 100){
