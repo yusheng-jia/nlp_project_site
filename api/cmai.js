@@ -5,9 +5,8 @@ var fs = require('fs');
 var http = require("http")
 
 var n_options = {  
-  hostname: 'tt.wx.coomaan.com',  
+  hostname: '47.103.43.69',  
   path: '/sms_n_account',  
-  port: 18502,
   method: 'POST',  
   headers: {  
       'Content-Type': 'application/json; charset=UTF-8'  
@@ -15,10 +14,9 @@ var n_options = {
 };
 
 var m_options = {  
-  hostname: 'tt.wx.coomaan.com',  
+  hostname: '47.103.43.69',  
   path: '/sms_m_account',  
-  port:18501,
-  method: 'POST',  
+  method: 'POST', 
   headers: {  
       'Content-Type': 'application/json; charset=UTF-8'  
   }  
@@ -72,7 +70,7 @@ function postMain(index){
   var currentText = array[index][1]
   console.log("index: " + index +" text: " + currentText)
   var content = JSON.stringify({"query":currentText,"userId":"dev001"})
-  var req = http.request(options,function(res){
+  var req = http.request(options, (res) => {
     // console.log('STATUS: ' + res.statusCode);  
     // console.log('HEADERS: ' + JSON.stringify(res.headers));  
     res.setEncoding('utf8');  
@@ -85,7 +83,7 @@ function postMain(index){
           array[index].push(obj.type)
         }
       } catch (error) {
-        
+        // console.log(error)
       }
        
     })
