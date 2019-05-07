@@ -1,5 +1,5 @@
-const api_n = "http://47.103.44.86/sms_n_account"
-const api_m = "http://47.103.44.86/sms_m_account"
+const api_n = "https://tt.wx.coomaan.com/sms_n_account"
+const api_m = "https://tt.wx.coomaan.com/sms_m_account"
 const guard_api = "http://tt.api.coomaan.com/coomaan/sms_check"
 var app = angular.module("app",['ngFileUpload'])
 
@@ -13,12 +13,15 @@ app.controller("main",function($scope, $interval, $http, Upload){
   $scope.showProcess = false
   $scope.processTimer = null
   $scope.rejectType = ""
-  $scope.maxs1 = ""
-  $scope.maxs2 = ""
   $scope.maxs3 = ""
+  $scope.showSimilar = false
+  var vm = $scope.vm = {};
+  vm.value = 0;
+  vm.style = 'bg-success';
+  vm.showLabel = true;
+  vm.striped = true;
 
   $scope.singleJudge = () => {
-    console.log($scope.coomaanTpye)
     if($scope.coomaanTpye == "M"){
       api_url = api_m
     }else{
@@ -28,7 +31,6 @@ app.controller("main",function($scope, $interval, $http, Upload){
       alert("输入内容不能为空")
       return;
     }
-    console.log("url: " + api_url)
     $http({
       url:api_url,
       method:'POST',
@@ -49,21 +51,11 @@ app.controller("main",function($scope, $interval, $http, Upload){
         $scope.status_text = "不确定"
       }
       $scope.rejectType = res.data.type
-      var max3 = res.data.max3
-      if(max3[0].split(":")[0] > 0.9){
-        $scope.maxs1 = max3[0]
+      if(res.data.max3 != undefined && res.data.max3 != ""){
+        $scope.showSimilar = true
+        $scope.max3 = res.data.max3
       }else{
-        $scope.maxs1 = ""
-      }
-      if(max3[1].split(":")[0] > 0.9){
-        $scope.maxs2 = max3[1]
-      }else{
-        $scope.maxs2 = ""
-      }
-      if(max3[2].split(":")[0] > 0.9){
-        $scope.maxs3 = max3[2]
-      }else{
-        $scope.maxs3 = ""
+        $scope.showSimilar = false
       }
     },error => {
       console.log(error)
@@ -72,10 +64,7 @@ app.controller("main",function($scope, $interval, $http, Upload){
   }
 
   $scope.guardJudge = () =>{
-    console.log("guardJudge" + $scope.guardTpye)
-    console.log("guardMessage: " + $scope.guardMessage)
     var port_type = $scope.guardTpye == $scope.guardTpyes[0]?1:2
-    console.log("port_type: " + port_type)
     $http({
       url:guard_api,
       method:'POST',
@@ -102,7 +91,6 @@ app.controller("main",function($scope, $interval, $http, Upload){
       console.log("报错了")
       console.log(error)
     })
-
   }
   
   $scope.submit = () => {
@@ -123,7 +111,7 @@ app.controller("main",function($scope, $interval, $http, Upload){
         url: '/file-upload',
         data: {file: file, 'type':$scope.multiTpye}
     }).then(function (resp) {
-      $scope.progress = 0
+      $scope.vm.value = 0
       $scope.showProcess = true
       console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
       $scope.processTimer = $interval(checkStatus,1000)
@@ -141,8 +129,8 @@ app.controller("main",function($scope, $interval, $http, Upload){
 
   var checkStatus = () =>{ 
     $http.get('/file_status').then(res=>{
-      $scope.progress = parseInt(res.data.status*100)
-      if ($scope.progress == 100){
+      $scope.vm.value = parseInt(res.data.status*100)
+      if ($scope.vm.value == 100){
         if($scope.processTimer !=null){
           $interval.cancel($scope.processTimer);
           $scope.showProcess = false

@@ -1,159 +1,101 @@
-<!DOCTYPE html >
-<html ng-app="app">
+<!DOCTYPE html>
+<html ng-app="app" lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <title>创蓝科技短信服务智能质检系统DEMO</title>
-  <link rel="stylesheet" href="stylesheets/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="scripts/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="stylesheets/main.css">
+  <script src="scripts/jquery/dist/jquery.min.js"></script>
+  <script src="scripts/popper.js/dist/umd/popper.min.js"></script>
+  <script src="scripts/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="scripts/angular/angular.min.js"></script>
+  <script src="scripts/ng-file-upload/dist/ng-file-upload-shim.min.js"></script>
+  <script src="scripts/ng-file-upload/dist/ng-file-upload.min.js"></script>
+  <script src="./javascripts/main.js"></script>
 </head>
-<script src="scripts/angular/angular.min.js"></script>
-<script src="scripts/ng-file-upload/dist/ng-file-upload-shim.min.js"></script>
-<script src="scripts/ng-file-upload/dist/ng-file-upload.min.js"></script>
-<script src="./javascripts/main.js"></script>
 
-<body ng-controller="main">
-  <div style="background-color:#FFFFFF">
-    <div class="nav">
-      <div style="float:left"><img src="images/logo.png" width="80" height="25" /></div>
-      &nbsp&nbsp创蓝科技短信服务智能质检系统DEMO
+<body ng-controller="main"> 
+  <div class="container-fluid header">
+    <img src="images/logo.png" width="80" height="25" />
+    创蓝科技短信服务智能质检系统DEMO
+  </div>
+  <div class="container-fluid top">
+    <div class="row">
+      <form id="form1" name="form1" class="col-6" ng-submit="singleJudge()">
+        <h4>单条判断</h4>
+        <div class="form-group">
+          <label for="sel1">账号类型</label>
+          <select class="form-control col-2" ng-init="coomaanTpye = types[0]" ng-model="coomaanTpye" ng-options="x for x in types" id="sel1">
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="comment1">短信内容</label>
+          <textarea ng-model="message" class="form-control" rows="5" id="comment1"></textarea>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">提交判断</button>
+        </div>
+        <div class="form-group">
+          <label>拒绝结果 <span ng-class="status" ng-bind="status_text"></span></label>
+        </div>
+        <div class="form-group">
+          <label>拒绝类型 <u ng-bind="rejectType"></u></label>
+        </div>
+        <div class="from-group">
+          <label>相似语料</label>
+          <ul class="list-group" ng-if="showSimilar">
+            <li ng-repeat="item in max3" class="list-group-item list-group-item-secondary">{{item}}</li>
+          </ul>
+        </div>
+      </form>
+      <form class="col-6" ng-submit="guardJudge()" id="form3" name="form3">
+        <h4>酷曼卫士</h4>
+        <div class="form-group">
+          <label for="sel2">短信类型</label>
+          <select ng-init="guardTpye = guardTpyes[0]" ng-model="guardTpye" ng-options="x for x in guardTpyes" class="form-control col-2" id="sel2">
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="comment2">短信内容</label>
+          <textarea ng-model="guardMessage" class="form-control" rows="5" id="comment2"></textarea>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">提交判断</button>
+        </div>
+        <div class="form-group">
+          <label>拒绝结果 <span ng-class="guard_status" ng-bind="guard_status_text"></span></label>
+        </div>
+      </form>
     </div>
-
-    <form id="form1" name="form1" ng-submit="singleJudge()">
-      <table width="50%" style="float:left" border="0" cellspacing="0" class="table1">
-        <tr>
-          <td colspan="2" class="title1">单条判断</td>
-        </tr>
-        <tr>
-          <td width="80">账号类型</td>
-          <td>
-            <label>
-              <select ng-init="coomaanTpye = types[0]" ng-model="coomaanTpye" ng-options="x for x in types" name="select"
-                class="select1">
+    <div class="row top">
+        <form id="form2" name="form2" class="col-6" ng-submit="submit()">
+            <h4>批量判断</h4>
+            <div class="form-group">
+              <label for="sel3">账号类型</label>
+              <select class="form-control col-2" ng-init="multiTpye = types[0]" ng-model="multiTpye" ng-options="x for x in types" id="sel3">
               </select>
-            </label> </td>
-        </tr>
-        <tr>
-          <td>短信内容</td>
-          <td><textarea ng-model="message" name="textarea" rows="5" class="input2"></textarea></td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td><input name="Submit" type="submit" class="btn" value="提交判断" /></td>
-        </tr>
-        <tr>
-          <td>判断结果</td>
-          <td>
-            <div style ng-class="status" ng-bind="status_text"></div>
-          </td>
-        </tr>
-        <tr>
-          <td>拒绝类型</td>
-          <td>
-            <div  ng-bind="rejectType"></div>
-          </td>
-        </tr>
-        <tr>
-          <td>相似语料</td>
-          <td ng-bind="maxs1" style="line-height: 1em;"></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td ng-bind="maxs2" style="line-height: 1em;"></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td ng-bind="maxs3" style="line-height: 1em;"></td>
-        </tr>
-      </table>
-    </form>
-    <form id="from3" name="from3" ng-submit="guardJudge()">
-      <table width="50%" style="float:right" border="0" cellspacing="0" class="table1">
-        <tr>
-          <td colspan="2" class="title1">短信卫士</td>
-        </tr>
-        <tr>
-          <td width="80">短信类型</td>
-          <td>
-            <label>
-              <select ng-init="guardTpye = guardTpyes[0]" ng-model="guardTpye" ng-options="x for x in guardTpyes" name="select"
-                class="select1">
-              </select>
-            </label> </td>
-        </tr>
-        <tr>
-          <td>短信内容</td>
-          <td><textarea ng-model="guardMessage" name="textarea" rows="5" class="input2"></textarea></td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td><input name="Submit" type="submit" class="btn" value="提交判断" /></td>
-        </tr>
-        <tr>
-          <td>判断结果</td>
-          <td>
-            <div style ng-class="guard_status" ng-bind="guard_status_text"></div>
-          </td>
-        </tr>
-      </table>
-    </form>
-
-
-    <form id="form2" name="form2" ng-submit="submit()">
-      <table width="1000" border="0" cellspacing="0" class="table2">
-        <tr>
-          <td colspan="2" class="title1">批量判断</td>
-        </tr>
-        <tr>
-          <td width="80">账号类型</td>
-          <td>
-            <label>
-              <select ng-init="multiTpye = types[0]" ng-model="multiTpye" ng-options="x for x in types" name="select"
-                class="select1">
-              </select>
-            </label> </td>
-        </tr>
-        <tr>
-          <td width="80">目录</td>
-          <td>
-            <label></label>
-            <input type="file" name="file" ngf-select ng-model="file" ngf-pattern="'.xls,.xlsx,.csv'" ngf-max-size="5MB"
-              required>
-          </td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td>
-            <font color="#999999">选择你要判断的文件夹所在目录。文件大小控制在5M以内，格式为xls,xlsx,csv</font>
-          </td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td><input name="Submit" type="submit" class="btn" value="提交判断" /></td>
-        </tr>
-        <tr>
-          <td>判断结果</td>
-          <td ng-if="!showProcess">
-            <div style class="yes">点击下载（<a href="/down_file" >sms_result.xlsx</a>）
             </div>
-          </td>
-          <td ng-if="showProcess">
-            <div class="progress">
-              <div ng-class="['Bar','blue']" ng-style="{width:progress+'%'}">
-                <div>{{progress}}%</div>
+            <div class="form-group">
+              <input type="file" name="file" class="form-control-file" ngf-select ng-model="file" ngf-pattern="'.xls,.xlsx,.csv'" 
+                ngf-max-size="5MB" id="comment3" required></input>
+                <font size="2" color="#999999">选择你要判断的文件夹所在目录。文件大小控制在5M以内，格式为xls,xlsx,csv</font>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary">提交判断</button>
+            </div>
+            <div ng-if="!showProcess" class="form-group">
+              <label class="yes form-check">点击下载（<a href="/down_file" >sms_result.xlsx</a>）
+              </label>
+            </div>
+            <div ng-if="showProcess" class="form-group" ng-class="{progress: true, 'progress-striped': vm.striped}">
+              <div ng-class="['progress-bar', vm.style ]" ng-style="{width: vm.value + '%'}" role="progressbar">
+                  <div ng-if="vm.showLabel">{{vm.value}}%</div>
               </div>
-            </div>
-          </td>
-        </tr>
-      </table>
-    </form>
-    <br />
-    <br />
-    <div>
-      <div class="copyright" align="center">技术支持:酷曼科技</div>
+          </div>
+          </form>
     </div>
   </div>
 </body>

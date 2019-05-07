@@ -1,3 +1,14 @@
+.top {
+  margin-top: 20px;
+}
+.header {
+  height: auto;
+  width: auto;
+  padding: 20px;
+  font-size: 22px;
+  color: #FFFFFF;
+  background-color: #0099FF;
+}
 .table1 {
   padding: 20px;
 }
@@ -34,23 +45,21 @@
   color: #008000;
   background-color: #caf4ca;
   text-indent: 10px;
-  width: 502px;
 }
 
 .no {
   color: #990000;
   background-color: #ffcaca;
   text-indent: 10px;
-  width: 502px;
 }
 
 .chat {
   color: #111010;
   background-color: #8a8585;
   text-indent: 10px;
-  width: 502px;
 }
 .start {
+  /* padding: 5px; */
   color: #c0bcbc;
   background-color: #dfdbdb;
   text-indent: 10px;
@@ -75,16 +84,6 @@
   padding-top: 12px
 }
 
-.progress {
-  width: 400px;
-  border: 1px solid #ccc;
-  height: 28px;
-  text-align: center;
-  line-height: 28px;
-  font-weight: bold;
-  color: #fff;
-  overflow: hidden;
-}
 
 .Bar {
   width: 50%;
