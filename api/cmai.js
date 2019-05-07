@@ -5,8 +5,9 @@ var fs = require('fs');
 var http = require("http")
 
 var n_options = {  
-  hostname: '47.103.44.86',  
+  hostname: 'tt.wx.coomaan.com',  
   path: '/sms_n_account',  
+  port: 18502,
   method: 'POST',  
   headers: {  
       'Content-Type': 'application/json; charset=UTF-8'  
@@ -14,8 +15,9 @@ var n_options = {
 };
 
 var m_options = {  
-  hostname: '47.103.44.86',  
+  hostname: 'tt.wx.coomaan.com',  
   path: '/sms_m_account',  
+  port:18601,
   method: 'POST',  
   headers: {  
       'Content-Type': 'application/json; charset=UTF-8'  
