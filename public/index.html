@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>创蓝科技短信服务智能质检系统DEMO</title>
+  <title>基于大数据和AI语义分析的短信智能质检TICK系统</title>
   <link rel="stylesheet" href="scripts/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="stylesheets/main.css">
   <script src="scripts/jquery/dist/jquery.min.js"></script>
@@ -17,18 +17,19 @@
   <script src="./javascripts/main.js"></script>
 </head>
 
-<body ng-controller="main"> 
+<body ng-controller="main">
   <div class="container-fluid header">
-    <img src="images/logo.png" width="80" height="25" />
-    创蓝科技短信服务智能质检系统DEMO
+    <img src="images/logo.jpg" width="80" height="25" />
+    基于大数据和AI语义分析的短信智能质检TICK系统
   </div>
   <div class="container-fluid top">
     <div class="row">
       <form id="form1" name="form1" class="col-6" ng-submit="singleJudge()">
-        <h4>单条判断</h4>
+        <h4>短信文本NLP</h4>
         <div class="form-group">
           <label for="sel1">账号类型</label>
-          <select class="form-control col-4 col-md-2" ng-init="coomaanTpye = types[0]" ng-model="coomaanTpye" ng-options="x for x in types" id="sel1">
+          <select class="form-control col-4 col-md-2" ng-init="coomaanTpye = types[0]" ng-model="coomaanTpye"
+            ng-options="x for x in types" id="sel1">
           </select>
         </div>
         <div class="form-group">
@@ -55,7 +56,8 @@
         <h4>酷曼卫士</h4>
         <div class="form-group">
           <label for="sel2">短信类型</label>
-          <select ng-init="guardTpye = guardTpyes[0]" ng-model="guardTpye" ng-options="x for x in guardTpyes" class="form-control col-6 col-md-2" id="sel2">
+          <select ng-init="guardTpye = guardTpyes[0]" ng-model="guardTpye" ng-options="x for x in guardTpyes"
+            class="form-control col-6 col-md-2" id="sel2">
           </select>
         </div>
         <div class="form-group">
@@ -71,31 +73,59 @@
       </form>
     </div>
     <div class="row top">
-        <form id="form2" name="form2" class="col-6" ng-submit="submit()">
-            <h4>批量判断</h4>
-            <div class="form-group">
-              <label for="sel3">账号类型</label>
-              <select class="form-control col-4 col-md-2" ng-init="multiTpye = types[0]" ng-model="multiTpye" ng-options="x for x in types" id="sel3">
-              </select>
-            </div>
-            <div class="form-group">
-              <input type="file" name="file" class="form-control-file" ngf-select ng-model="file" ngf-pattern="'.xls,.xlsx,.csv'" 
-                ngf-max-size="5MB" id="comment3" required></input>
-                <font size="2" color="#999999">选择你要判断的文件夹所在目录。文件大小控制在5M以内，格式为xls,xlsx,csv</font>
-            </div>
-            <div class="form-group">
-              <button type="submit" class="btn btn-primary">提交判断</button>
-            </div>
-            <div ng-if="!showProcess" class="form-group">
-              <label class="yes form-check">点击下载（<a href="/down_file" >sms_result.xlsx</a>）
-              </label>
-            </div>
-            <div ng-if="showProcess" class="form-group" ng-class="{progress: true, 'progress-striped': vm.striped}">
-              <div ng-class="['progress-bar', vm.style ]" ng-style="{width: vm.value + '%'}" role="progressbar">
-                  <div ng-if="vm.showLabel">{{vm.value}}%</div>
-              </div>
+      <form id="form2" name="form2" class="col-6" ng-submit="submit()">
+        <h4>批量判断</h4>
+        <div class="form-group">
+          <label for="sel3">账号类型</label>
+          <select class="form-control col-4 col-md-2" ng-init="multiTpye = types[0]" ng-model="multiTpye"
+            ng-options="x for x in types" id="sel3">
+          </select>
+        </div>
+        <div class="form-group">
+          <input type="file" name="file" class="form-control-file" ngf-select ng-model="file"
+            ngf-pattern="'.xls,.xlsx,.csv'" ngf-max-size="5MB" id="comment3" required></input>
+          <font size="2" color="#999999">选择你要判断的文件夹所在目录。文件大小控制在5M以内，格式为xls,xlsx,csv</font>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">提交判断</button>
+        </div>
+        <div ng-if="!showProcess" class="form-group">
+          <label class="yes form-check">点击下载（<a href="/down_file">sms_result.xlsx</a>）
+          </label>
+        </div>
+        <div ng-if="showProcess" class="form-group" ng-class="{progress: true, 'progress-striped': vm.striped}">
+          <div ng-class="['progress-bar', vm.style ]" ng-style="{width: vm.value + '%'}" role="progressbar">
+            <div ng-if="vm.showLabel">{{vm.value}}%</div>
           </div>
-          </form>
+        </div>
+      </form>
+
+      <form id="form4" name="form4" class="col-6" ng-submit="guardSubmit()">
+        <h4>批量判断</h4>
+        <div class="form-group">
+          <label for="sel4">短信类型</label>
+          <select class="form-control col-4 col-md-2" ng-init="guardMultiTpye = guardTpyes[0]" ng-model="guardMultiTpye"
+            ng-options="x for x in guardTpyes" id="sel4">
+          </select>
+        </div>
+        <div class="form-group">
+          <input type="file" name="file" class="form-control-file" ngf-select ng-model="guardFile"
+            ngf-pattern="'.xls,.xlsx,.csv'" ngf-max-size="5MB" id="comment3" required></input>
+          <font size="2" color="#999999">选择你要判断的文件夹所在目录。文件大小控制在5M以内，格式为xls,xlsx,csv</font>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">提交判断</button>
+        </div>
+        <div ng-if="!showProcessGuard" class="form-group">
+          <label class="yes form-check">点击下载（<a href="/down_guard_file">sms_guard.xlsx</a>）
+          </label>
+        </div>
+        <div ng-if="showProcessGuard" class="form-group" ng-class="{progress: true, 'progress-striped': smsvm.striped}">
+          <div ng-class="['progress-bar', smsvm.style ]" ng-style="{width: smsvm.value + '%'}" role="progressbar">
+            <div ng-if="smsvm.showLabel">{{smsvm.value}}%</div>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 </body>
