@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>基于大数据和AI语义分析的短信智能质检TICK系统</title>
+  <title>短信文本NLP检测接口</title>
   <link rel="stylesheet" href="scripts/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="stylesheets/main.css">
   <script src="scripts/jquery/dist/jquery.min.js"></script>
@@ -20,11 +20,11 @@
 <body ng-controller="main">
   <div class="container-fluid header">
     <img src="images/logo.jpg" width="80" height="25" />
-    基于大数据和AI语义分析的短信智能质检TICK系统
+    短信文本NLP检测接口
   </div>
   <div class="container-fluid top">
     <div class="row">
-      <form id="form1" name="form1" class="col-6" ng-submit="singleJudge()">
+      <form id="form1" name="form1" class="col-8" ng-submit="singleJudge()">
         <h4>短信文本NLP</h4>
         <div class="form-group">
           <label for="sel1">账号类型</label>
@@ -52,7 +52,7 @@
           </ul>
         </div>
       </form>
-      <form class="col-6" ng-submit="guardJudge()" id="form3" name="form3">
+      <!-- <form class="col-6" ng-submit="guardJudge()" id="form3" name="form3">
         <h4>酷曼卫士</h4>
         <div class="form-group">
           <label for="sel2">短信类型</label>
@@ -70,10 +70,10 @@
         <div class="form-group">
           <label>拒绝结果 <span ng-class="guard_status" ng-bind="guard_status_text"></span></label>
         </div>
-      </form>
+      </form> -->
     </div>
     <div class="row top">
-      <form id="form2" name="form2" class="col-6" ng-submit="submit()">
+      <form id="form2" name="form2" class="col-8" ng-submit="submit()">
         <h4>批量判断</h4>
         <div class="form-group">
           <label for="sel3">账号类型</label>
@@ -100,7 +100,7 @@
         </div>
       </form>
 
-      <form id="form4" name="form4" class="col-6" ng-submit="guardSubmit()">
+      <!-- <form id="form4" name="form4" class="col-6" ng-submit="guardSubmit()">
         <h4>批量判断</h4>
         <div class="form-group">
           <label for="sel4">短信类型</label>
@@ -125,7 +125,7 @@
             <div ng-if="smsvm.showLabel">{{smsvm.value}}%</div>
           </div>
         </div>
-      </form>
+      </form> -->
     </div>
   </div>
 </body>
