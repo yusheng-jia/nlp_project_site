@@ -1,40 +1,9 @@
 {
   "apps": [
     {
+     "name": "nlp_project_site",
   
-     "name": "sms_project_site",
-  
-     "script": "bin/www",
-  
-     "log_date_format": "YYYY-MM-DD HH:mm Z",
-  
-     "error_file": "logs/app-err.log",
-  
-     "out_file": "logs/app-out.log",
-  
-     "pid_file": "pids/app.pid",
-  
-     "instances": 6,
-  
-     "min_uptime": "200s",
-  
-     "max_restarts": 10,
-  
-     "max_memory_restart": "200M",
-  
-     "cron_restart": "1 0 * * *",
-  
-     "watch": false,
-  
-     "merge_logs": true,
-  
-     "exec_interpreter": "node",
-  
-     "exec_mode": "cluster",
-  
-     "autorestart": true,
-  
-     "vizion": false
+     "script": "bin/www"
   
     }
    ]

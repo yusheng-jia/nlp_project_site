@@ -32,7 +32,7 @@ app.controller("main",function($scope, $interval, $http, Upload){
   $scope.singleJudge = () => {
     $scope.max3 = []
     $scope.showSimilar = false;
-    if($scope.coomaanTpye == "M"){
+    if($scope.coomaanTpye == "营销短信"){
       api_url = api_m
     }else{
       api_url = api_n
@@ -162,9 +162,15 @@ app.controller("main",function($scope, $interval, $http, Upload){
 
   var uploadFile = file => {
     console.log("file : " + file)
+    var type = "N";
+    if($scope.multiTpye == "营销短信"){
+      type = "M";
+    }else{
+      type = "N";
+    }
     Upload.upload({
         url: '/file-upload',
-        data: {file: file, 'type':$scope.multiTpye}
+        data: {file: file, 'type':type}
     }).then(function (resp) {
       $scope.vm.value = 0
       $scope.showProcess = true
