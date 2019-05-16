@@ -6,7 +6,7 @@ nodeJs web 项目
 
 
 项目启动：
-1. git clone https://github.com/yusheng-jia/sms_project_site.git
+1. git clone https://github.com/yusheng-jia/nlp_project_site.git
 2. cd sms_project_site 
 3. npm i
 4. npm strat
